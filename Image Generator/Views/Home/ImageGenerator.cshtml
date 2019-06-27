@@ -1,0 +1,22 @@
+﻿
+@{
+	ViewData["Title"] = "ImageGenerator";
+}
+
+<h1>ImageGenerator</h1>
+
+@*can't use download attribute in anchor to download file into your hard drive, 
+because the image is loaded from a server and not from the project.
+Instead, it navigates to the file in a web browser tab.*@
+
+<div ng-app="myApp" ng-controller="myCtrl">
+	<input type="text" ng-model="search" ng-change="Search(search)" placeholder="Type in what you want to search." />
+	@*<h1>Hello {{search}}</h1>*@
+	<div ng-repeat="x in images.images">
+		{{x.id}}
+		<div class="imageDownload">
+			<img src="{{x.url}}" alt="{{source_id}}" style="height: 25%; width: 25%;" />
+		</div>
+		<a data-ng-href="/api/APIReaderSplashImage/GetImageById/{{x.id}}">Download</a>
+	</div>
+</div>
